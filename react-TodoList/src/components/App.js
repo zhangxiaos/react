@@ -1,19 +1,27 @@
 'use strict';
-import React form 'react';
-import LocalDb from 'localDb';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 import TodoHeader from './TodoHeader.js';
-import TodoMain from './TodoHeader.js';
+import TodoMain from './TodoMain.js';
 import TodoFooter from './TodoFooter.js';
 
-class App extends React.Component {
+const db = {
+	get: key => JSON.parse(localStorage.getItem(key)),
+	set: (key, val) => {
+		val = JSON.stringify(val)
+		localStorage.setItem(key, val)
+	}
+}
+
+class App extends Component {
 	constructor(props) {
 	 	super();
-	
-	 	this.db = new LocalDb('ReactDemo');
+		this.db = db;
 	  	this.state = {
 	  		todos: this.db.get('todos') || [],
 	  		isAllChecked: false
 	  	};
+	  	this.addTodo = this.addTodo.bind(this)
 	}
 
 	allChecked() {
@@ -79,7 +87,7 @@ class App extends React.Component {
 
 		return (
 			<div className="todo-wrap">
-				<TodoHeader addTodo={this.addTodo.bind(this)} />
+				<TodoHeader addTodo={this.addTodo} />
 				<TodoMain todos={this.state.todos} deleteTodo={this.deleteTodo.bind(this)} changeTodoState={this.changeTodoState.bind(this)} />
 				<TodoFooter {...info} changeTodoState={this.changeTodoState.bind(this)} clearDone={this.clearDone.bind(this)} />
 			</div>
@@ -87,4 +95,4 @@ class App extends React.Component {
 	}
 }
 
-React.render(<App />, document.getElementById('app'));
+render(<App />, document.getElementById('app'));

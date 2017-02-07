@@ -1,4 +1,9 @@
-class TodoMain extends React.Component {
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import TodoItem from './TodoItem.js';
+
+class TodoMain extends Component {
+
 	render() {
 		if (this.props.todos.length == 0) {
 			return (
@@ -10,7 +15,7 @@ class TodoMain extends React.Component {
 				<ul className="todo-main">
 					{
 						this.props.todos.map((todo, index) => {
-							return <TodoItem text={todo.text} isDone={todo.isDone} index={index} {...this.props} />
+							return <TodoItem key={index} text={todo.text} isDone={todo.isDone} index={index} {...this.props} />
 						})
 					}
 				</ul>

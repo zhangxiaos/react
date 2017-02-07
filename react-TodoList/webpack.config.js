@@ -1,21 +1,44 @@
-'use strict';
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const path = require('path');
+
 module.exports = {
-	entry: [
-		'./src/entry.js'
-	],
+	entry: './src/index.js',
 	output: {
-		path: './dist/',
-		filname: 'bundle.js'
-	},
-	externals: {
-		'react': 'React'
+		path: '/',
+		filename: 'bundle.js',
+		publicPath: '/'
 	},
 	module: {
-		loaders: [
-			{ test: /\.js$/, loader: 'jsx!babel', include: /src/ },
-			{ test: /.ss$/, loader: 'style!css' },
-			{ test: /.scss$/, loader: 'style!css!sass' },
-			{ test: /.(png|jpg)$/, loader: 'url?limit=8129' }
-		]
-	}
+		rules: [{
+            test: /\.scss$/,
+            use: [{
+                loader: "style-loader" // creates style nodes from JS strings
+            }, {
+                loader: "css-loader" // translates CSS into CommonJS
+            }, {
+                loader: "sass-loader" // compiles Sass to CSS
+            }]
+        },{
+        	test: /\.js[x]?$/, 
+        	use: [{
+        		loader: "babel-loader", 
+        	}]
+
+        }]
+	},
+	devServer: {
+		// contentBase: './src/',
+		historyApiFallback: true,
+		inline: true,
+		port: 9090,
+		stats: { colors: true }
+	},
+	// plugins: [
+ //       new webpack.LoaderOptionsPlugin({
+ //         // test: /\.xxx$/, // may apply this only for some modules
+ //         options: {
+ //           sourceMap: true         }
+ //       })
+ //     ]
 };

@@ -1,14 +1,21 @@
-class TodoHeader extends React.Component {
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+
+class TodoHeader extends Component {
+
 	handlerKeyUp (e) {
 		if (e.keyCode == 13) {
 			let value = e.target.value;
+
 			if (!value) return false;
+
 			let newTodoItem = {
 				text: value,
 				isDone: false
 			};
 
 			e.target.value = '';
+			
 			this.props.addTodo(newTodoItem);
 		}
 	}
