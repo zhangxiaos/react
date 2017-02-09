@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
+import React, {
+	Component
+} from 'react';
+import {
+	render
+} from 'react-dom';
 
-class TodoHeader extends Component {
+export default class TodoHeader extends Component {
 
-	handlerKeyUp (e) {
+	handlerKeyUp(e) {
 		if (e.keyCode == 13) {
 			let value = e.target.value;
 
@@ -15,7 +19,7 @@ class TodoHeader extends Component {
 			};
 
 			e.target.value = '';
-			
+
 			this.props.addTodo(newTodoItem);
 		}
 	}
@@ -28,5 +32,3 @@ class TodoHeader extends Component {
 		)
 	}
 }
-
-export default TodoHeader;

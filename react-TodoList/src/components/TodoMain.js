@@ -1,16 +1,19 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
+import React, {
+	Component
+} from 'react';
+import {
+	render
+} from 'react-dom';
 import TodoItem from './TodoItem.js';
 
-class TodoMain extends Component {
+export default class TodoMain extends Component {
 
 	render() {
 		if (this.props.todos.length == 0) {
 			return (
 				<div className="todo-empty">恭喜你，目前没有待办任务！</div>
 			)
-		}
-		else {
+		} else {
 			return (
 				<ul className="todo-main">
 					{
@@ -23,5 +26,3 @@ class TodoMain extends Component {
 		}
 	}
 }
-
-export default TodoMain;

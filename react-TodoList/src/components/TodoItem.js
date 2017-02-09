@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { render, findDOMNode } from 'react-dom';
 
-class TodoItem extends Component {
+export default class TodoItem extends Component {
 
     //改变任务是否已完成的状态
     handlerChange() {
-        let isDone = !this.props.isDone;
+            let isDone = !this.props.isDone;
         this.props.changeTodoState(this.props.index, isDone);
     }
 
@@ -38,5 +38,3 @@ class TodoItem extends Component {
         )
     }
 }
-
-export default TodoItem;

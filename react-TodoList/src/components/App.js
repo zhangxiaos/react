@@ -1,6 +1,10 @@
 'use strict';
-import React, { Component } from 'react';
-import { render } from 'react-dom';
+import React, {
+	Component
+} from 'react';
+import {
+	render
+} from 'react-dom';
 import TodoHeader from './TodoHeader.js';
 import TodoMain from './TodoMain.js';
 import TodoFooter from './TodoFooter.js';
@@ -8,20 +12,20 @@ import TodoFooter from './TodoFooter.js';
 const db = {
 	get: key => JSON.parse(localStorage.getItem(key)),
 	set: (key, val) => {
-		val = JSON.stringify(val)
-		localStorage.setItem(key, val)
+		val = JSON.stringify(val);
+		localStorage.setItem(key, val);
 	}
 }
 
 class App extends Component {
 	constructor(props) {
-	 	super();
+		super();
 		this.db = db;
-	  	this.state = {
-	  		todos: this.db.get('todos') || [],
-	  		isAllChecked: false
-	  	};
-	  	this.addTodo = this.addTodo.bind(this)
+		this.state = {
+			todos: this.db.get('todos') || [],
+			isAllChecked: false
+		};
+		this.addTodo = this.addTodo.bind(this)
 	}
 
 	allChecked() {
@@ -45,7 +49,9 @@ class App extends Component {
 
 	deleteTodo(index) {
 		this.state.todos.splice(index, 1);
-		this.setState({ todos: this.state.todos });
+		this.setState({
+			todos: this.state.todos
+		});
 		this.db.set('todos', this.state.todos);
 	}
 
@@ -69,8 +75,7 @@ class App extends Component {
 				}),
 				isAllChecked: isDone
 			});
-		}
-		else {
+		} else {
 			this.state.todos[index].isDone = isDone;
 			this.allChecked();
 		}

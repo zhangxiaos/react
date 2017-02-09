@@ -1,11 +1,15 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-class TodoFooter extends Component {
+import React, {
+    Component
+} from 'react';
+import {
+    render
+} from 'react-dom';
+export default class TodoFooter extends Component {
     //改变任务是否已完成的状态
     handlerSelectAll(e) {
-        this.props.changeTodoState(null, e.target.checked, true);    // true表示全部操作。
-    }
-    //删除全部已完成的任务
+            this.props.changeTodoState(null, e.target.checked, true); // true表示全部操作。
+        }
+        //删除全部已完成的任务
     handlerDeleteDone() {
         this.props.clearDone();
     }
@@ -21,5 +25,3 @@ class TodoFooter extends Component {
         )
     }
 }
-
-export default TodoFooter;
